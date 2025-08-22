@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Container Offloading Visibility Report</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Container Offloading Visibility Report</h2>
+      <form class="container-form">
+        <div class="field-container">
+          <label for="containerNumber">Container Number:</label>
+          <input type="text" id="containerNumber" required />
+        </div>
+
+        <div class="field-container">
+          <label for="sealNumber">Seal Number:</label>
+          <input type="text" id="sealNumber" required />
+        </div>
+
+        <div class="field-container">
+          <label for="fsaNumber">FSA Number:</label>
+          <input type="text" id="fsaNumber" required />
+        </div>
+
+        <div class="field-container">
+          <label for="numContainers">Number of Containers:</label>
+          <input type="number" id="numContainers" required />
+        </div>
+
+        <div class="field-container">
+          <label for="receivedDate">Received Date:</label>
+          <input type="date" id="receivedDate" required />
+        </div>
+
+        <div class="field-container">
+          <label for="offloadedDate">Offloaded Date:</label>
+          <input type="date" id="offloadedDate" required />
+        </div>
+
+        <div class="field-container">
+          <label for="returnDate">Return Date:</label>
+          <input type="date" id="returnDate" required />
+        </div>
+      </form>
+
+      <h3>Item Details</h3>
+
+      <form class="item-details-form no-print" onsubmit="handleAddItem(event)">
+        <div class="field-container">
+          <label for="code">Code</label>
+          <input name="code" type="text" required />
+        </div>
+        <div class="field-container">
+          <label for="code">Cartons/Pallet</label>
+          <input name="cartonsPerPallet" type="text" required />
+        </div>
+        <div class="field-container">
+          <label for="code">Quantity/Carton</label>
+          <input name="quantityPerCarton" type="text" required />
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="primary">Add Item</button>
+          <button type="button" class="primary">Print Report</button>
+        </div>
+      </form>
+
+      <table id="itemsTable">
+        <tr>
+          <th class="no-print"></th>
+          <th>Item</th>
+          <th>UoM</th>
+          <th>Cartons/Pallet</th>
+          <th>Quantity/Carton</th>
+          <th>Total</th>
+        </tr>
+      </table>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
