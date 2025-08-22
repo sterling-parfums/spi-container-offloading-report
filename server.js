@@ -27,8 +27,9 @@ app.listen(3000, () => {
 });
 
 async function findItem(code) {
-  const url =
-    "https://my413987-api.s4hana.cloud.sap/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product";
+  const baseUrl = process.env.SAP_API_URL;
+  const url = `${baseUrl}/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product`;
+
   const expandParams = ["to_Description", "to_ProductUnitsOfMeasure"];
   const selectParams = [
     "to_Description/ProductDescription",
