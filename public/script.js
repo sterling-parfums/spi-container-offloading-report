@@ -9,8 +9,6 @@ async function handleAddItem(e) {
 
   const item = await fetch(`/api/items/${code}`).then((res) => res.json());
 
-  console.log(item);
-
   /**
    * @type {HTMLTableElement}
    */
@@ -35,4 +33,17 @@ async function handleAddItem(e) {
     Number(cartonsPerPallet) * Number(quantityPerCarton);
 
   form.reset();
+}
+
+function handlePrint() {
+  /** @type {HTMLFormElement} */
+  const form = document.getElementById("containerForm");
+
+  const isValid = form.checkValidity();
+  if (!isValid) {
+    form.reportValidity();
+    return;
+  }
+
+  window.print();
 }
