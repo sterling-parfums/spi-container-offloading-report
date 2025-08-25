@@ -76,6 +76,7 @@ button.danger {
 .btn-group {
   display: flex;
   gap: 10px;
+  max-width: 400px;
 }
 
 table {
