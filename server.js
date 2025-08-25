@@ -12,7 +12,7 @@ app.get("/api/items/:code", async (req, res) => {
 
   const item = await findItem(code);
 
-  if (!code.match(/[^A-Za-z0-9]/g)) {
+  if (code.match(/[^A-Za-z0-9]/g)) {
     res.status(400).json({ error: "Invalid item code" });
   }
 
