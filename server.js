@@ -12,6 +12,10 @@ app.get("/api/items/:code", async (req, res) => {
 
   const item = await findItem(code);
 
+  if (!code.match(/[^A-Za-z0-9]/g)) {
+    res.status(400).json({ error: "Invalid item code" });
+  }
+
   const description = item?.d?.to_Description?.results[0]?.ProductDescription;
   const uom = item?.d?.to_ProductUnitsOfMeasure?.results[0]?.BaseUnit;
 
@@ -26,6 +30,11 @@ app.listen(3001, () => {
   console.log("Server is running on http://localhost:3001");
 });
 
+/**
+ * Fetch item details from SAP API
+ * @param {string} code - The item code to fetch
+ * @returns {Promise<Object>} - The item details
+ */
 async function findItem(code) {
   const baseUrl = process.env.SAP_API_URL;
   const url = `${baseUrl}/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product`;
@@ -35,7 +44,7 @@ async function findItem(code) {
     "to_Description/ProductDescription",
     "to_ProductUnitsOfMeasure/BaseUnit",
   ];
-  const itemUrl = `${url}('${code}')?$format=json&$expand=${expandParams.join()}&$select=${selectParams.join()}`;
+  const itemUrl = `${url}('${code.toUpperCase()}')?$format=json&$expand=${expandParams.join()}&$select=${selectParams.join()}`;
 
   const APIUSER = process.env.SAP_API_USER;
   const APIPASSWORD = process.env.SAP_API_PASSWORD;
