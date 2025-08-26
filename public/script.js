@@ -1,3 +1,4 @@
+const itemCache = {};
 async function handleAddItem(e) {
   e.preventDefault();
   const form = e.target;
@@ -7,7 +8,11 @@ async function handleAddItem(e) {
     formData.entries(),
   );
 
-  const item = await fetch(`/api/items/${code}`).then((res) => res.json());
+  const item =
+    itemCache[code.toUpperCase()] ??
+    (await fetch(`/api/items/${code}`).then((res) => res.json()));
+
+  itemCache[code.toUpperCase()] = item;
 
   /**
    * @type {HTMLTableElement}
