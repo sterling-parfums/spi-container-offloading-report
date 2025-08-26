@@ -2,7 +2,7 @@ import "dotenv/config";
 import { findItem } from "./service/item.service";
 import { submitReportSchema } from "./schema/submit-report-schema";
 import express from "express";
-import { renderReport } from "./service/pdf.service";
+import { renderReport } from "./service/report.service";
 import morgan from "morgan";
 import { sendReportMail } from "./service/mail.service";
 

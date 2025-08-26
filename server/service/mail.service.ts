@@ -1,6 +1,6 @@
 import { SubmitReportInput } from "@/schema/submit-report-schema";
 import nodemailer from "nodemailer";
-import { renderReport } from "./pdf.service";
+import { renderReport } from "./report.service";
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,

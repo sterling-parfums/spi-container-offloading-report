@@ -10,12 +10,17 @@ export const submitReportSchema = z.object({
   returnDate: z.iso.date(),
   items: z
     .array(
-      z.object({
-        name: z.string(),
-        uom: z.string(),
-        cartonsPerPallet: z.number().min(1),
-        quantityPerCarton: z.number().min(1),
-      }),
+      z
+        .object({
+          name: z.string(),
+          uom: z.string(),
+          cartonsPerPallet: z.number().min(1),
+          quantityPerCarton: z.number().min(1),
+        })
+        .transform((item) => ({
+          ...item,
+          totalQuantity: item.cartonsPerPallet * item.quantityPerCarton,
+        })),
     )
     .min(1, "At least one item is required"),
 });
