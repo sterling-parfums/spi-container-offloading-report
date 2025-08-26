@@ -1,41 +1,14 @@
-require("dotenv").config();
-
-const express = require("express");
-const app = express();
-
-app.use(express.static("public"));
-
-app.get("/api/items/:code", async (req, res) => {
-  const code = req.params.code;
-
-  console.log(`Fetching item with code: ${code}`);
-
-  const item = await findItem(code);
-
-  if (code.match(/[^A-Za-z0-9]/g)) {
-    res.status(400).json({ error: "Invalid item code" });
-  }
-
-  const description = item?.d?.to_Description?.results[0]?.ProductDescription;
-  const uom = item?.d?.to_ProductUnitsOfMeasure?.results[0]?.BaseUnit;
-
-  res.json({
-    code,
-    description,
-    uom,
-  });
-});
-
-app.listen(3001, () => {
-  console.log("Server is running on http://localhost:3001");
-});
-
-/**
- * Fetch item details from SAP API
- * @param {string} code - The item code to fetch
- * @returns {Promise<Object>} - The item details
- */
-async function findItem(code) {
+type SAPResponse = {
+  d: {
+    to_Description: {
+      results: { ProductDescription: string }[];
+    };
+    to_ProductUnitsOfMeasure: {
+      results: { BaseUnit: string }[];
+    };
+  };
+};
+export async function findItem(code: string): Promise<SAPResponse> {
   const baseUrl = process.env.SAP_API_URL;
   const url = `${baseUrl}/sap/opu/odata/sap/API_PRODUCT_SRV/A_Product`;
 

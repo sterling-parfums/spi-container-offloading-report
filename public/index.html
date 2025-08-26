@@ -13,31 +13,41 @@
       <form class="container-form" id="containerForm">
         <div class="field-container">
           <label for="containerNumber">Container Number:</label>
-          <input type="text" id="containerNumber" required />
+          <input
+            type="text"
+            name="containerNumber"
+            id="containerNumber"
+            required
+          />
         </div>
         <div class="field-container">
           <label for="sealNumber">Seal Number:</label>
-          <input type="text" id="sealNumber" required />
+          <input type="text" name="sealNumber" id="sealNumber" required />
         </div>
         <div class="field-container">
           <label for="fsaNumber">FSA Number:</label>
-          <input type="text" id="fsaNumber" required />
+          <input type="text" name="fsaNumber" id="fsaNumber" required />
         </div>
         <div class="field-container">
           <label for="numContainers">Number of Containers:</label>
-          <input type="number" id="numContainers" required />
+          <input
+            type="number"
+            name="numOfContainers"
+            id="numContainers"
+            required
+          />
         </div>
         <div class="field-container">
           <label for="receivedDate">Received Date:</label>
-          <input type="date" id="receivedDate" required />
+          <input type="date" name="receivedDate" id="receivedDate" required />
         </div>
         <div class="field-container">
           <label for="offloadedDate">Offloaded Date:</label>
-          <input type="date" id="offloadedDate" required />
+          <input type="date" name="offloadedDate" id="offloadedDate" required />
         </div>
         <div class="field-container">
           <label for="returnDate">Return Date:</label>
-          <input type="date" id="returnDate" required />
+          <input type="date" name="returnDate" id="returnDate" required />
         </div>
       </form>
       <h3>Item Details</h3>
@@ -56,8 +66,8 @@
         </div>
         <div class="btn-group">
           <button type="submit" class="primary">Add Item</button>
-          <button type="button" class="primary" onclick="handlePrint()">
-            Print Report
+          <button type="button" class="primary" onclick="handleSend()">
+            Send Report
           </button>
         </div>
       </form>

@@ -1,0 +1,33 @@
+<h2>Container Offloading Report</h2>
+
+<p><strong>Container Number:</strong> {{containerNumber}}</p>
+<p><strong>Seal Number:</strong> {{sealNumber}}</p>
+<p><strong>FSA Number:</strong> {{fsaNumber}}</p>
+<p><strong>Number of Containers:</strong> {{numOfContainers}}</p>
+<p><strong>Received Date:</strong> {{recievedDate}}</p>
+<p><strong>Offloaded Date:</strong> {{offloadedDate}}</p>
+<p><strong>Return Date:</strong> {{returnDate}}</p>
+
+<h3>Pallets ({{itemsCount}})</h3>
+<table border="1" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>UOM</th>
+      <th>Cartons Per Pallet</th>
+      <th>Quantity Per Carton</th>
+      <th>Total Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#items}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{uom}}</td>
+      <td>{{cartonsPerPallet}}</td>
+      <td>{{quantityPerCarton}}</td>
+      <td>{{totalQuantity}}</td>
+    </tr>
+    {{/items}}
+  </tbody>
+</table>
