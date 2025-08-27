@@ -20,10 +20,15 @@ label {
   font-weight: bold;
 }
 
+select,
 input {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
+}
+
+select {
+  appearance: none;
 }
 
 .field-container {

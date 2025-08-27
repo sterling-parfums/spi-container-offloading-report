@@ -12,6 +12,13 @@
       <h2>Container Offloading Visibility Report</h2>
       <form class="container-form" id="containerForm">
         <div class="field-container">
+          <label for="warehouse">Warehouse:</label>
+          <select name="warehouse" id="warehouse" required>
+            <option value="" disabled selected>Select Warehouse</option>
+            <option value="API">API</option>
+          </select>
+        </div>
+        <div class="field-container">
           <label for="containerNumber">Container Number:</label>
           <input
             type="text"

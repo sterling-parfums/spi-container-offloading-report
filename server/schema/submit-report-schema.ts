@@ -8,6 +8,7 @@ export const submitReportSchema = z.object({
   receivedDate: z.iso.date(),
   offloadedDate: z.iso.date(),
   returnDate: z.iso.date(),
+  warehouse: z.enum(["API"]),
   items: z
     .array(
       z
