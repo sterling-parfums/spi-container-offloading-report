@@ -102,3 +102,21 @@ function resetForm() {
     .slice(1)
     .forEach((row) => table.deleteRow(row.rowIndex));
 }
+
+function onLoad() {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  /** @type {HTMLSelectElement} */
+  const select = document.getElementById("warehouseSelect");
+
+  if (searchParams.has("wh")) {
+    const wh = searchParams.get("wh");
+    select.value = wh;
+  }
+
+  if (select.selectedIndex === -1) {
+    select.value = "";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", onLoad);
