@@ -23,5 +23,5 @@ export function renderReport(data: SubmitReportInput): string {
 
 function formatDate(date: string) {
   const d = new Date(date);
-  return d.toLocaleDateString("en-GB");
+  return d.toLocaleString("en-GB");
 }

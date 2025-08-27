@@ -33,13 +33,14 @@ select {
 
 .field-container {
   display: flex;
-  max-width: 400px;
+  max-width: 500px;
   align-items: center;
   margin: 5px 0;
 }
 
 .field-container * {
   flex: 1;
+  width: 100px;
 }
 
 form {

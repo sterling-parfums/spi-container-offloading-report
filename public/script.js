@@ -80,14 +80,24 @@ async function handleSend() {
   const formData = new FormData(form);
   const values = Object.fromEntries(formData.entries());
 
-  await fetch("/api/report", {
+  values.receivedDate = new Date(values.receivedDate).toISOString();
+  values.offloadedDate = new Date(values.offloadedDate).toISOString();
+  values.returnDate = new Date(values.returnDate).toISOString();
+
+  const response = await fetch("/api/report", {
     method: "POST",
     body: JSON.stringify({ ...values, items }),
     headers: { "Content-Type": "application/json" },
   });
 
-  alert("Report sent to supervisor");
+  if (!response.ok) {
+    const error = await response.text();
+    alert("Something went wrong!");
+    console.error(error);
+    return;
+  }
 
+  alert("Report sent successfully.");
   resetForm();
 }
 

@@ -5,9 +5,9 @@ export const submitReportSchema = z.object({
   sealNumber: z.string(),
   fsaNumber: z.string(),
   numOfContainers: z.coerce.number().min(1),
-  receivedDate: z.iso.date(),
-  offloadedDate: z.iso.date(),
-  returnDate: z.iso.date(),
+  receivedDate: z.iso.datetime(),
+  offloadedDate: z.iso.datetime(),
+  returnDate: z.iso.datetime(),
   warehouse: z.enum(["API"]),
   items: z
     .array(
