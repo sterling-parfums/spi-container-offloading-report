@@ -8,6 +8,8 @@ export function renderReport(data: SubmitReportInput): string {
   const templatePath = join(__dirname, "template", "report.html");
   const template = readFileSync(templatePath, "utf-8");
 
+  data.items.sort((a, b) => a.name.localeCompare(b.name));
+
   const formatted = {
     ...data,
     recievedDate: formatDate(data.receivedDate),
