@@ -2,6 +2,8 @@ import { readFileSync } from "fs";
 import Mustache from "mustache";
 import { join } from "path";
 import { SubmitReportInput } from "../schema/submit-report-schema";
+import { OffloadingReport } from "@/entity/OffloadingReport";
+import { repository } from "./datasource.service";
 
 export function renderReport(data: SubmitReportInput): string {
   // The path is the runtime path after build
@@ -16,9 +18,21 @@ export function renderReport(data: SubmitReportInput): string {
     offloadedDate: formatDate(data.offloadedDate),
     returnDate: formatDate(data.returnDate),
     itemsCount: data.items.length,
+    poNumbers: data.poNumbers.join(", "),
+    mismatchItems: 
   };
 
   return Mustache.render(template, formatted);
+}
+
+export async function saveReport(data: SubmitReportInput): Promise<number> {
+  const report = new OffloadingReport();
+  report.payload = JSON.stringify(data);
+
+  const repo = await repository();
+  const savedReport = await repo.save(report);
+
+  return savedReport.id;
 }
 
 function formatDate(date: string) {

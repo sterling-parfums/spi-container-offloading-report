@@ -62,6 +62,10 @@ function getItems() {
 }
 
 async function handleSend() {
+  if (!window.confirm("Are you sure you want to send the report?")) {
+    return;
+  }
+
   /** @type {HTMLFormElement} */
   const form = document.getElementById("containerForm");
 
