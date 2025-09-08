@@ -1,3 +1,4 @@
+import warehouseEmails from "@/config/warehouse-emails";
 import z from "zod";
 
 export const submitReportSchema = z.object({
@@ -8,7 +9,9 @@ export const submitReportSchema = z.object({
   receivedDate: z.iso.datetime(),
   offloadedDate: z.iso.datetime(),
   returnDate: z.iso.datetime(),
-  warehouse: z.enum(["API"]),
+  warehouse: z.enum(
+    Object.keys(warehouseEmails) as (keyof typeof warehouseEmails)[],
+  ),
   items: z
     .array(
       z
