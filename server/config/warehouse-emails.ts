@@ -4,4 +4,4 @@ export default {
   SPI: "akbar.hussain@sterling.ae",
   DIP1: "shaquid.adil@sterling.ae",
   RAS: "arka.gayen@sterling.ae",
-};
+} as const;
