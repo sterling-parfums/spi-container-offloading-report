@@ -47,12 +47,14 @@ function getItems() {
   return Array.from(table.rows)
     .slice(1)
     .map((row) => {
+      const code = row.cells[1].innerText.split(" - ", 1)[0];
       const name = row.cells[1].innerText;
       const uom = row.cells[2].innerText;
       const cartonsPerPallet = row.cells[3].innerText;
       const quantityPerCarton = row.cells[4].innerText;
 
       return {
+        code,
         name,
         uom,
         cartonsPerPallet: Number(cartonsPerPallet),
@@ -62,10 +64,6 @@ function getItems() {
 }
 
 async function handleSend() {
-  if (!window.confirm("Are you sure you want to send the report?")) {
-    return;
-  }
-
   /** @type {HTMLFormElement} */
   const form = document.getElementById("containerForm");
 
@@ -78,6 +76,10 @@ async function handleSend() {
   const items = getItems();
   if (items.length === 0) {
     alert("Please add at least one item.");
+    return;
+  }
+
+  if (!window.confirm("Are you sure you want to send the report?")) {
     return;
   }
 

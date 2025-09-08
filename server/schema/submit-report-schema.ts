@@ -19,6 +19,7 @@ export const submitReportSchema = z.object({
     .array(
       z
         .object({
+          code: z.string(),
           name: z.string(),
           uom: z.string(),
           cartonsPerPallet: z.number().min(1),

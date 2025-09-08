@@ -1,6 +1,7 @@
 <h2>Container Offloading Report</h2>
 
 <p><strong>Warehouse:</strong> {{warehouse}}</p>
+<p><strong>PO Numbers:</strong> {{poNumbers}}</p>
 <p><strong>Container Number:</strong> {{containerNumber}}</p>
 <p><strong>Seal Number:</strong> {{sealNumber}}</p>
 <p><strong>FSA Number:</strong> {{fsaNumber}}</p>
@@ -8,6 +9,32 @@
 <p><strong>Received Date:</strong> {{recievedDate}}</p>
 <p><strong>Offloaded Date:</strong> {{offloadedDate}}</p>
 <p><strong>Return Date:</strong> {{returnDate}}</p>
+
+{{#differenceItems}}
+<h3>Mismatch from POs ({{count}})</h3>
+<table border="1" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>UOM</th>
+      <th>PO Qty</th>
+      <th>Container Qty</th>
+      <th>PO Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#items}}
+    <tr>
+      <td>{{code}} - {{name}}</td>
+      <td>{{uom}}</td>
+      <td>{{poQty}}</td>
+      <td>{{containerQty}}</td>
+      <td>{{poNumber}}</td>
+    </tr>
+    {{/items}}
+  </tbody>
+</table>
+{{/differenceItems}}
 
 <h3>Pallets ({{itemsCount}})</h3>
 <table border="1" cellspacing="0" cellpadding="5">

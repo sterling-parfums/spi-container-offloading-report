@@ -8,7 +8,10 @@
     "skipLibCheck": true,
     "outDir": "dist",
     "strictNullChecks": true,
-    "paths": { "@/*": ["./server/*"] }
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": { "@/*": ["./server/*"] },
+    "noUncheckedIndexedAccess": true
   },
   "include": ["server"]
 }

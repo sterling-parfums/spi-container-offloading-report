@@ -8,6 +8,7 @@ await esbuild.build({
   platform: "node",
   minify: true,
   target: ["node22"],
+  external: ["oracledb"],
   plugins: [
     copy({
       resolveFrom: "cwd",

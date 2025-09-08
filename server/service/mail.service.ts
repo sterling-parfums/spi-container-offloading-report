@@ -1,7 +1,4 @@
-import { SubmitReportInput } from "@/schema/submit-report-schema";
 import nodemailer from "nodemailer";
-import { renderReport } from "./report.service";
-import warehouseEmails from "@/config/warehouse-emails";
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -12,13 +9,15 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function sendReportMail(data: SubmitReportInput) {
-  const from = process.env.REPORT_SENDER;
-  const to = warehouseEmails[data.warehouse];
-  const subject = `Container Offloading WH-${data.warehouse} Container-${data.containerNumber} FSA-${data.fsaNumber}`;
-  const html = renderReport(data);
+type MailOptions = {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+};
 
-  await transporter.sendMail({
+export async function sendMail({ from, to, subject, html }: MailOptions) {
+  return transporter.sendMail({
     to,
     from,
     subject,

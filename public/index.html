@@ -23,6 +23,17 @@
           </select>
         </div>
         <div class="field-container">
+          <label for="poNumbers">PO Numbers:</label>
+          <input
+            pattern="[0-9, ]+"
+            type="text"
+            name="poNumbers"
+            id="poNumbers"
+            required
+            placeholder="eg. 100001,100002"
+          />
+        </div>
+        <div class="field-container">
           <label for="containerNumber">Container Number:</label>
           <input
             type="text"
