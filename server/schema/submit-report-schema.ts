@@ -7,7 +7,8 @@ export const submitReportSchema = z.object({
   fsaNumber: z.string(),
   poNumbers: z
     .string()
-    .transform((arg) => arg.replaceAll(/\s+/g, "").split(",")),
+    .optional()
+    .transform((arg) => arg?.replaceAll(/\s+/g, "").split(",")),
   numOfContainers: z.coerce.number().min(1),
   receivedDate: z.iso.datetime(),
   offloadedDate: z.iso.datetime(),

@@ -58,7 +58,7 @@ export function renderReport(data: RenderReportInput): string {
     offloadedDate: formatDate(data.offloadedDate),
     returnDate: formatDate(data.returnDate),
     itemsCount: data.items.length,
-    poNumbers: data.poNumbers.join(", "),
+    poNumbers: data.poNumbers?.join(", "),
     differenceItems: function () {
       const items = findDifferenceItems(data.purchaseOrderItems, data.items);
 

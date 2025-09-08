@@ -47,7 +47,7 @@ app.post("/api/report", async (req, res) => {
     return res.status(500).json({ error: "Email sender is not configured" });
   }
 
-  const purchaseOrders = await findPurchaseOrders(data.poNumbers);
+  const purchaseOrders = await findPurchaseOrders(data.poNumbers ?? []);
   const purchaseOrderItems = purchaseOrders.flatMap(
     (po) => po._PurchaseOrderItem,
   );
