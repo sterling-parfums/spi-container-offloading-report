@@ -2,6 +2,7 @@ import warehouseEmails from "@/config/warehouse-emails";
 import z from "zod";
 
 export const submitReportSchema = z.object({
+  author: z.string(),
   containerNumber: z.string(),
   sealNumber: z.string(),
   fsaNumber: z.string(),
