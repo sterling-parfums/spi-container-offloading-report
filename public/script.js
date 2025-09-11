@@ -11,12 +11,12 @@ function addItemRow(item, entries) {
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "-";
   deleteButton.onclick = () => table.deleteRow(row.rowIndex);
-  deleteButton.classList.add("danger");
+  deleteButton.classList.add("icon", "danger");
 
   const duplicateButton = document.createElement("button");
   duplicateButton.innerText = "⧉";
   duplicateButton.onclick = () => addItemRow(item, entries);
-  duplicateButton.classList.add("secondary");
+  duplicateButton.classList.add("icon", "secondary");
 
   const cell = row.insertCell();
   cell.classList.add("no-print");
