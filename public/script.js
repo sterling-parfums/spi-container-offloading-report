@@ -1,19 +1,6 @@
 const itemCache = {};
-async function handleAddItem(e) {
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
 
-  const { code, cartonsPerPallet, quantityPerCarton } = Object.fromEntries(
-    formData.entries(),
-  );
-
-  const item =
-    itemCache[code.toUpperCase()] ??
-    (await fetch(`/api/items/${code}`).then((res) => res.json()));
-
-  itemCache[code.toUpperCase()] = item;
-
+function addItemRow(item, entries) {
   /**
    * @type {HTMLTableElement}
    */
@@ -26,9 +13,17 @@ async function handleAddItem(e) {
   deleteButton.onclick = () => table.deleteRow(row.rowIndex);
   deleteButton.classList.add("danger");
 
+  const duplicateButton = document.createElement("button");
+  duplicateButton.innerText = "⧉";
+  duplicateButton.onclick = () => addItemRow(item, entries);
+  duplicateButton.classList.add("secondary");
+
   const cell = row.insertCell();
   cell.classList.add("no-print");
   cell.appendChild(deleteButton);
+  cell.appendChild(duplicateButton);
+
+  const { code, cartonsPerPallet, quantityPerCarton } = entries;
 
   row.insertCell().innerText = `${code} - ${item.description || "N/A"}`;
   row.insertCell().innerText = item.uom || "N/A";
@@ -36,6 +31,24 @@ async function handleAddItem(e) {
   row.insertCell().innerText = quantityPerCarton;
   row.insertCell().innerText =
     Number(cartonsPerPallet) * Number(quantityPerCarton);
+
+  return row;
+}
+
+async function handleAddItem(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+
+  const entries = Object.fromEntries(formData.entries());
+
+  const item =
+    itemCache[entries.code.toUpperCase()] ??
+    (await fetch(`/api/items/${entries.code}`).then((res) => res.json()));
+
+  itemCache[entries.code.toUpperCase()] = item;
+
+  addItemRow(item, entries);
 
   form.reset();
 }
